@@ -1,2 +1,5 @@
 ---
 # defaults file for license_changer
+license_changer_git: True
+license_changer_dir: '/dev/null' #no damage by default
+license_changer_glob: *

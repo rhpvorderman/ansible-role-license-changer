@@ -1,2 +1,10 @@
 ---
 # tasks file for license_changer
+
+- name: Find all licenseable files in git project dir.
+  command: "git ls_files {{license_changer_dir}} -x '{{license_changer_glob}}'"
+  register: license_changer_files
+  when: license_changer_git
+
+- name: Find all licenseable files in project dir.
+  when: not license_changer_git
