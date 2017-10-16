@@ -13,17 +13,20 @@
 
 - name: Create a commented version of the license header.
   command: >
-    python {{license_changer_temp_dir.path}}/license_commenter.py}}
-    
+    {{license_changer_temp_dir.path}}/license_commenter.py}}
+    -i license_changer_license_header_file
+    -o {{license_changer_temp_dir.path}}/commented_license_header.txt
+    -p '{{license_changer_header_prefix}}'
+    -s '{{license_changer_header_suffix}}'
   args:
-    cr
-
+    creates: {{license_changer_temp_dir.path}}/commented_license_header.txt
 
 - name: Find all licenseable files in git project dir.
   command: "git ls_files {{license_changer_project_dir}} -x '{{license_changer_project_file_regexp}}'"
   register: license_changer_files
   when: license_changer_git
 
+- name: Insert block in license files
 # TODO implement non-git project
 #- name: Find all licenseable files in project dir.
 #  when: not license_changer_git
