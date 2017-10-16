@@ -1,10 +1,29 @@
 ---
 # tasks file for license_changer
 
+- name: Create temporary files directory
+  tempfile:
+    state: directory
+  register: license_changer_temp_dir
+
+- name: transfer the license commenter program
+  copy:
+    src: license_commenter.py
+    dest: "{{license_changer_temp_dir.path}}/license_commenter.py}}"
+
+- name: Create a commented version of the license header.
+  command: >
+    python {{license_changer_temp_dir.path}}/license_commenter.py}}
+    
+  args:
+    cr
+
+
 - name: Find all licenseable files in git project dir.
-  command: "git ls_files {{license_changer_dir}} -x '{{license_changer_glob}}'"
+  command: "git ls_files {{license_changer_project_dir}} -x '{{license_changer_project_file_regexp}}'"
   register: license_changer_files
   when: license_changer_git
 
-- name: Find all licenseable files in project dir.
-  when: not license_changer_git
+# TODO implement non-git project
+#- name: Find all licenseable files in project dir.
+#  when: not license_changer_git
