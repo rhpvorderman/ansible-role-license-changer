@@ -1,3 +1,5 @@
 This is a placeholder license header text.
 A license header text file can be specified by setting the
 license_changer_header_file variable.
+
+Newlines in headers should be supported
