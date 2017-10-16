@@ -7,21 +7,25 @@
         suffix: ""
         start: "#!/bin/bash"
         end: "^$"
+        marker: "#\t\t"
       - regexp: ".py$"
         prefix: "# "
         suffix: ""
         start: "BOF"
         end: "^$"
+        marker: "#\t\t"
       - regexp: ".scala$"
         prefix: "  * "
         suffix: ""
         start: "/**"
         end: "*/"
+        marker: "// "
       - regexp: ".yaml.test$"
         prefix: "#"
         suffix: ""
         start: "---$"
         end: "^$"
+        marker: "#__"
   tasks:
     - name: Run license changer on test files
       include_role:
@@ -33,6 +37,7 @@
         license_changer_header_suffix: "{{test_item.suffix}}"
         license_changer_header_start: "{{test_item.start}}"
         license_changer_header_end: "{{test_item.end}}"
+        license_changer_header_marker: "{{test_item.marker}}"
       with_items: "{{test_files}}"
       loop_control:
         loop_var: test_item

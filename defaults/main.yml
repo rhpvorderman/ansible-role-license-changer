@@ -8,5 +8,5 @@ license_changer_header_prefix: '# '
 license_changer_header_suffix: ''
 license_changer_header_start: BOF
 license_changer_header_end: '^$'
-license_changer_header_marker: ''
+license_changer_header_marker: '#\t\t'
 license_changer_check_mode: False

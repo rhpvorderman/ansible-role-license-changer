@@ -28,7 +28,7 @@
   changed_when: false
 
 - name: Find all licenseable files in git project dir.
-  command: "git ls-files {{license_changer_project_dir}} -x '{{license_changer_project_file_regexp}}'"
+  shell: "git ls-files {{license_changer_project_dir}} | grep -E '{{license_changer_project_file_regexp}}'"
   register: license_changer_project_files
   when: license_changer_git
 
@@ -40,8 +40,7 @@
   blockinfile:
     backup: no
     block: "{{license_changer_license_header.stdout}}"
-    insertafter: "{{license_changer_header_start}}"
-    insertbefore: "{{license_changer_header_end}}"
+    insertbefore: "{{license_changer_header_start}}"
     marker: "{{license_changer_header_marker}}"
     dest: "{{item}}"
     state: present
