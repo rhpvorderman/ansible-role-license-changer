@@ -1,0 +1,36 @@
+- hosts: localhost
+  become: no
+  vars:
+    test_files:
+      - regexp: ".sh$"
+        prefix: "# "
+        suffix: ""
+        start: "#!/bin/bash"
+        end: "^$"
+      - regexp: ".py$"
+        prefix: "# "
+        suffix: ""
+        start: "BOF"
+        end: "^$"
+      - regexp: ".scala$"
+        prefix: "  * "
+        suffix: ""
+        start: "/**"
+        end: "*/"
+      - regexp: ".yaml.test$"
+        prefix: "#"
+        suffix: ""
+        start: "---$"
+        end: "^$"
+  tasks:
+    - name: Run license changer on test files
+      include_role:
+        name: license_changer
+      vars:
+        license_changer_project_dir: "{{playbook_dir}}/tests/files"
+        license_changer_project_file_regexp: "{{item.regexp}}"
+        license_changer_header_prefix: "{{item.prefix}}"
+        license_changer_header_suffix: "{{item.suffix}}"
+        license_changer_header_start: "{{item.start}}"
+        license_changer_header_end: "{{item.end}}"
+      with_items: "{{test_files}}"
