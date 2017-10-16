@@ -1,0 +1,4 @@
+---
+# old license
+- name: this looks like an ansible playbook
+  command: echo "yes it does"
