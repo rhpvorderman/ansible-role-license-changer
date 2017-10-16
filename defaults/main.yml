@@ -2,8 +2,8 @@
 # defaults file for license_changer
 license_changer_git: True
 license_changer_project_dir: '/dev/null' #no damage by default
-license_changer_project_file_regexp: *
-license_changer_header_file: license_header.txt
+license_changer_project_file_regexp: "*"
+license_changer_header_file: "{{role_path}}/files/license_header.txt"
 license_changer_header_prefix: '# '
 license_changer_header_suffix: ''
 license_changer_header_start: BOF

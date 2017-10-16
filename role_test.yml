@@ -25,12 +25,14 @@
   tasks:
     - name: Run license changer on test files
       include_role:
-        name: license_changer
+        name: license-changer
       vars:
         license_changer_project_dir: "{{playbook_dir}}/tests/files"
-        license_changer_project_file_regexp: "{{item.regexp}}"
-        license_changer_header_prefix: "{{item.prefix}}"
-        license_changer_header_suffix: "{{item.suffix}}"
-        license_changer_header_start: "{{item.start}}"
-        license_changer_header_end: "{{item.end}}"
+        license_changer_project_file_regexp: "{{test_item.regexp}}"
+        license_changer_header_prefix: "{{test_item.prefix}}"
+        license_changer_header_suffix: "{{test_item.suffix}}"
+        license_changer_header_start: "{{test_item.start}}"
+        license_changer_header_end: "{{test_item.end}}"
       with_items: "{{test_files}}"
+      loop_control:
+        loop_var: test_item
