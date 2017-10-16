@@ -1,2 +1,6 @@
 ---
 # handlers file for license_changer
+- name: license header not present
+  fail:
+    msg: Not all project files contain license
+  when: license_changer_check_mode
