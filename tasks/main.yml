@@ -40,7 +40,8 @@
   blockinfile:
     backup: no
     block: "{{license_changer_license_header.stdout}}"
-    insertbefore: "{{license_changer_header_start}}"
+    insertbefore: "{{license_changer_header_before | default(omit)}}"
+    insertafter: "{{license_changer_header_after | default(omit)}}"
     marker: "{{license_changer_header_marker}}"
     dest: "{{item}}"
     state: present
