@@ -16,7 +16,7 @@
         prefix: "  * "
         suffix: ""
         start: "/**"
-        end: "*/"
+        end: "  */"
       - regexp: ".yaml.test$"
         prefix: "#"
         suffix: ""
