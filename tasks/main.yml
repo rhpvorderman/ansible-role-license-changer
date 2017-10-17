@@ -48,3 +48,4 @@
     marker_begin: "{{license_changer_header_start}}"
     marker_end: "{{license_changer_header_end}}"
   with_items: "{{license_changer_project_files.stdout_lines}}"
+  notify: license header not present
