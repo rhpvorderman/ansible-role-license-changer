@@ -6,12 +6,12 @@
         prefix: "# "
         suffix: ""
         start: "#!/bin/bash"
-        end: ""
+        end: "#\t"
       - regexp: ".py$"
         prefix: "# "
         suffix: ""
         start: "#\t\t"
-        end: ""
+        end: "#\t"
       - regexp: ".scala$"
         prefix: "  * "
         suffix: ""
@@ -21,7 +21,7 @@
         prefix: "# "
         suffix: ""
         start: "---"
-        end: ""
+        end: "#\t"
   tasks:
     - name: Run license changer on test files
       include_role:
