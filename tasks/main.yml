@@ -42,7 +42,7 @@
     block: "{{license_changer_license_header.stdout}}"
     insertbefore: "{{license_changer_header_before}}"
     insertafter: "{{license_changer_header_after | default(omit)}}"
-    marker: "{mark}"
+    marker: "{{license_changer_header_marker}}"
     dest: "{{item}}"
     state: present
     marker_begin: "{{license_changer_header_start}}"
