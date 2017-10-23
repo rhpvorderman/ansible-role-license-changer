@@ -16,6 +16,7 @@
         prefix: "  * "
         suffix: ""
         start: "/**"
+        whitespace_strip: false
         end: "  */"
       - regexp: ".yaml.test$"
         prefix: "# "
@@ -33,6 +34,7 @@
         license_changer_header_suffix: "{{test_item.suffix}}"
         license_changer_header_start: "{{test_item.start}}"
         license_changer_header_end: "{{test_item.end}}"
+        license_changer_strip_whitespace: "{{test_item.whitespace_strip | default(True)}}"
       with_items: "{{test_files}}"
       loop_control:
         loop_var: test_item

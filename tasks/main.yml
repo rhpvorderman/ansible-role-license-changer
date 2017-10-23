@@ -19,6 +19,7 @@
     -o {{license_changer_temp_dir.path}}/commented_license_header.txt
     -p '{{license_changer_header_prefix}}'
     -s '{{license_changer_header_suffix}}'
+    {{ license_changer_strip_whitespace | ternary('','--whitespace_strip_off')}}
   args:
     creates: "{{license_changer_temp_dir.path}}/commented_license_header.txt"
 

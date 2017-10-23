@@ -11,3 +11,4 @@ license_changer_check_mode: False
 license_changer_header_before: BOF
 license_changer_header_start: "# -----"
 license_changer_header_end: "# ....."
+license_changer_strip_whitespace: True
