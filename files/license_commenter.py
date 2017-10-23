@@ -15,6 +15,7 @@ def argument_parser():
     parser.add_argument('-p', '--prefix', default='# ')
     parser.add_argument('-s', '--suffix', default='')
     parser.add_argument('--overwrite', action='store_true')
+    parser.add_argument('--whitespace_strip_off', action='store_true')
     return parser.parse_args()
 
 
@@ -43,7 +44,10 @@ def main():
             # Write to output file
             with open(args.output, 'w') as output_file:
                 for line in input_file.readlines():
-                    output_file.write(args.prefix + line.replace('\n','') + args.suffix + '\n')
+                    output_line = args.prefix + line.replace('\n','') + args.suffix
+                    if not args.whitespace_strip_off:
+                        output_line = output_line.strip()
+                    output_file.write( output_line + '\n')
 
     except FileNotFoundError:
         raise FileNotFoundError(args.input)
