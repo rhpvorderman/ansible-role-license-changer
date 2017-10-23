@@ -1,4 +1,4 @@
-Role Name
+License_changer
 =========
 
 A brief description of the role goes here.
@@ -6,7 +6,13 @@ A brief description of the role goes here.
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This requires a slightly modified version of ansible. Make sure this repository is cloned recursively and issue
+```bash
+pip install -e ansible
+```
+To install ansible.
+Changes have been [commited upstream](https://github.com/ansible/ansible/pull/31787).
+
 
 Role Variables
 --------------
