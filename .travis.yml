@@ -14,5 +14,5 @@ matrix:
         - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
     - script:
         - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
-        - yamllint .
+        - yamllint -s .
         - ansible-lint .
