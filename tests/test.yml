@@ -1,5 +1,45 @@
----
 - hosts: localhost
-  remote_user: root
-  roles:
-    - license_changer
+  become: no
+  vars:
+    license_files:
+      - regexp: ".sh$"
+        prefix: "# "
+        suffix: ""
+        after: "#!/bin/bash"
+        start: "# -----"
+        end: "# ....."
+      - regexp: ".py$"
+        prefix: "# "
+        suffix: ""
+        before: BOF
+        start: "# -----"
+        end: "# ....."
+      - regexp: ".scala$"
+        prefix: "  * "
+        suffix: ""
+        start: "/**"
+        whitespace_strip: false
+        end: "  */"
+      - regexp: ".yaml.test$"
+        prefix: "# "
+        suffix: ""
+        after: "---"
+        start: "# -----"
+        end: "# ....."
+  tasks:
+    - name: Run license changer on test files
+      include_role:
+        name: license-changer
+      vars:
+        license_changer_project_dir: "{{playbook_dir}}/tests/files"
+        license_changer_project_file_regexp: "{{license_item.regexp}}"
+        license_changer_header_prefix: "{{license_item.prefix}}"
+        license_changer_header_suffix: "{{license_item.suffix}}"
+        license_changer_header_start: "{{license_item.start}}"
+        license_changer_header_end: "{{license_item.end}}"
+        license_changer_header_before: "{{license_item.before | default (omit)}}"
+        license_changer_header_after: "{{license_item.after | default(omit)}}"
+        license_changer_strip_whitespace: "{{license_item.whitespace_strip | default(True)}}"
+      with_items: "{{license_files}}"
+      loop_control:
+        loop_var: license_item
