@@ -24,7 +24,7 @@
   tasks:
     - name: Run license changer on project files
       include_role:
-        name: license-changer
+        name: ansible-role-license-changer
       vars:
         license_changer_header_file: "LICENSE"
         license_changer_project_dir: "tasks vars defaults handlers files"

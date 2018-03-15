@@ -30,7 +30,7 @@
   tasks:
     - name: Run license changer on test files
       include_role:
-        name: license-changer
+        name: ansible-role-license-changer
       vars:
         license_changer_project_dir: "tests/files"
         license_changer_project_file_regexp: "{{license_item.regexp}}"
