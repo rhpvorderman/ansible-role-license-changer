@@ -53,7 +53,9 @@
 
 # The ansible find module is not git aware.
 - name: Find all licenseable files in git project dir.
-  shell: git ls-files {{license_changer_project_dir}} | grep -E '{{license_changer_project_file_regexp}}'"
+  shell: >
+    git ls-files {{license_changer_project_dir}} |
+    grep -E '{{license_changer_project_file_regexp}}'
   register: license_changer_project_files
   when: license_changer_git
   # Grep returns 2 when an error occurs. 1 when no matches occur.
@@ -61,8 +63,8 @@
   failed_when: license_changer_project_files.rc == 2
 
 # TODO implement non-git project
-#- name: Find all licenseable files in project dir.
-#  when: not license_changer_git
+# - name: Find all licenseable files in project dir.
+#   when: not license_changer_git
 
 - name: Insert header in project files
   blockinfile:

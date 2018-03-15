@@ -1,15 +1,4 @@
 ---
-# defaults file for license_changer
-license_changer_git: True
-license_changer_project_dir: '/dev/null' #no damage by default
-license_changer_project_file_regexp: "*"
-license_changer_header_file: "{{role_path}}/files/license_header.txt"
-license_changer_header_prefix: '# '
-license_changer_header_suffix: ''
-license_changer_header_marker: "{mark}"
-license_changer_check_mode: False
-license_changer_header_before: BOF
-license_changer_header_start: "# -----"
 # -----
 # MIT License
 #
@@ -33,5 +22,16 @@ license_changer_header_start: "# -----"
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # .....
+# defaults file for license_changer
+license_changer_git: True
+license_changer_project_dir: '/dev/null'  # no damage by default
+license_changer_project_file_regexp: "*"
+license_changer_header_file: "{{role_path}}/files/license_header.txt"
+license_changer_header_prefix: '# '
+license_changer_header_suffix: ''
+license_changer_header_marker: "{mark}"
+license_changer_check_mode: False
+license_changer_header_before: BOF
+license_changer_header_start: "# -----"
 license_changer_header_end: "# ....."
 license_changer_strip_whitespace: True

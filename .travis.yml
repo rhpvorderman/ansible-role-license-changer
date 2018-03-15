@@ -13,6 +13,6 @@ matrix:
         - ansible-playbook tests/test.yml
         - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
     - script:
-        - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
-        - yamllint -s .
+        - ansible-playbook license_project.yml -e "license_changer_check_mode=true
+        - yamllint -s $(git ls-files | grep -E '*.ya?ml$')
         - ansible-lint .

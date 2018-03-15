@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   become: no
   vars:
@@ -31,7 +32,7 @@
       include_role:
         name: license-changer
       vars:
-        license_changer_project_dir: "{{playbook_dir}}/tests/files"
+        license_changer_project_dir: "tests/files"
         license_changer_project_file_regexp: "{{license_item.regexp}}"
         license_changer_header_prefix: "{{license_item.prefix}}"
         license_changer_header_suffix: "{{license_item.suffix}}"

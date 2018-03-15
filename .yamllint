@@ -32,7 +32,7 @@ rules:
   comments-indentation: {}
   # Force document start (required for placing license headers)
   document-end: disable
-  document-start: 
+  document-start:
     present: true
   # Default
   empty-lines:
@@ -50,9 +50,9 @@ rules:
   # No key-duplicates allowed. Ansible will always choose last defined value.
   # Ambiguity is not desirable.
   key-duplicates: false
-  # Max line-length 80.
+  # Max line-length 100.
   line-length:
-    max: 80
+    max: 100
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
   new-line-at-end-of-file: enable
