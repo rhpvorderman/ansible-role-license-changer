@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   become: no
   vars:
@@ -5,33 +6,28 @@
       - regexp: ".sh$"
         prefix: "# "
         suffix: ""
-        after: "#!/bin/bash"
+        after: "#!/.*"
         start: "# -----"
         end: "# ....."
       - regexp: ".py$"
         prefix: "# "
         suffix: ""
-        before: BOF
+        after: "#!/.*"
         start: "# -----"
         end: "# ....."
-      - regexp: ".scala$"
-        prefix: "  * "
-        suffix: ""
-        start: "/**"
-        whitespace_strip: false
-        end: "  */"
-      - regexp: ".yaml.test$"
+      - regexp: ".ya?ml$"
         prefix: "# "
         suffix: ""
         after: "---"
         start: "# -----"
         end: "# ....."
   tasks:
-    - name: Run license changer on test files
+    - name: Run license changer on project files
       include_role:
-        name: license-changer
+        name: ansible-role-license-changer
       vars:
-        license_changer_project_dir: "{{playbook_dir}}/tests/files"
+        license_changer_header_file: "LICENSE"
+        license_changer_project_dir: "tasks vars defaults handlers files"
         license_changer_project_file_regexp: "{{license_item.regexp}}"
         license_changer_header_prefix: "{{license_item.prefix}}"
         license_changer_header_suffix: "{{license_item.suffix}}"

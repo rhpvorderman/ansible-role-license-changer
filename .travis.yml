@@ -1,0 +1,19 @@
+---
+language: python
+sudo: false
+python:
+  - 2.7
+matrix:
+  include:
+    - install:
+        - pip install -r requirements.txt
+      script:
+        - bash tests/test.sh
+
+    - install:
+        - pip install -r requirements.txt
+        - pip install -r dev-requirements.txt
+      script:
+        - bash check_licenses.sh
+        - yamllint -s $(git ls-files | grep -E '*.ya?ml$')
+        - ansible-lint .
