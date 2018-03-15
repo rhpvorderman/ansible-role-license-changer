@@ -10,7 +10,6 @@ matrix:
   include:
     - install:
         - pip install -r requirements.txt
-        - pip install -r dev-requirements.txt
       script:
         - ansible-playbook tests/test.yml
         - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
