@@ -61,6 +61,10 @@
   # Grep returns 2 when an error occurs. 1 when no matches occur.
   # Does continue now on exit code 1.
   failed_when: license_changer_project_files.rc == 2
+  tags:
+    # Skip ansible-lint because this is advanced git usage not yet
+    # in a module
+    - skip_ansible_lint
 
 # TODO implement non-git project
 # - name: Find all licenseable files in project dir.
