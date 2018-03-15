@@ -9,13 +9,12 @@ matrix:
     - install:
         - pip install -r requirements.txt
       script:
-        - ansible-playbook test.yml
-        - ansible-playbook test.yml -e "license_changer_check_mode=true"
+        - bash tests/test.sh
 
     - install:
         - pip install -r requirements.txt
         - pip install -r dev-requirements.txt
       script:
-        - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
+        - bash check_licenses.sh
         - yamllint -s $(git ls-files | grep -E '*.ya?ml$')
         - ansible-lint .
