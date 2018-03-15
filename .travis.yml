@@ -1,3 +1,4 @@
+---
 language: python
 sudo: false
 python:
@@ -5,7 +6,13 @@ python:
   - 3.6
 install:
   - pip install -r requirements.txt
-script:
-  - ansible-playbook tests/test.yml
-  - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
-  - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
+  - pip install -r dev-requirements.txt
+matrix:
+  include:
+    - script:
+        - ansible-playbook tests/test.yml
+        - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
+    - script:
+        - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
+        - yamllint .
+        - ansible-lint .
