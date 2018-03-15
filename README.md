@@ -1,44 +1,40 @@
 License_changer
 =========
 
-A brief description of the role goes here.
+This ansible role changes the license files in a project. It is git aware.
 
 Requirements
 ------------
 
-This requires a slightly modified version of ansible. Make sure this repository is cloned recursively and issue
-```bash
-pip install -e ansible
-```
-To install ansible.
-Changes have been [commited upstream](https://github.com/ansible/ansible/pull/31787).
-
+Ansible 2.5 or higher is required.
 
 Role Variables
 --------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
+```YAML
+license_changer_project_dir: "/your/project/"
+license_changer_project_file_regexp: "*"  # The regular expression for the filenames that need a license
+license_changer_header_file: "/your/project/LICENSE" # The license header file
+license_changer_header_prefix: '# '  # All the lines in the header will have this prefix
+license_changer_header_suffix: ''  # All the lines in the header will have this suffix
+license_changer_check_mode: False
+license_changer_header_before: BOF  # Same as blockinfile before
+license_changer_header_after: EOF  # Same as blockinfile after
+license_changer_header_start: "# -----"  # First line of the header.
+license_changer_header_end: "# ....." # Last line of the header
+# These acts as a boundary. Next time you change the license everything between start
+# and end is changed
+```
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+An example playbook can be found [here](license_project.yml).
 
 License
 -------
 
-GPLv3
+MIT (Expat) License
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Sequencing Analysis Support Core at Leiden University Medical Center
