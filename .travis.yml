@@ -8,3 +8,4 @@ install:
 script:
   - ansible-playbook tests/test.yml
   - ansible-playbook tests/test.yml -e "license_changer_check_mode=true"
+  - ansible-playbook license_project.yml -e "license_changer_check_mode=true"
