@@ -24,11 +24,6 @@
 # .....
 import argparse
 import os
-'''
-Copyright 2017 Ruben Vorderman
-Copyright 2017 SASC Group (LUMC)
-'''
-
 
 def argument_parser():
     parser = argparse.ArgumentParser(prog='License Commenter',
